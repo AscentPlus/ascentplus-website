@@ -75,3 +75,18 @@
     }
   });
 })();
+// Smooth scroll without changing URL hash
+document.querySelectorAll('a[data-scroll]').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault(); // stop URL from updating with #id
+    const sectionId = this.getAttribute('data-scroll');
+    const section = document.getElementById(sectionId);
+    if (section) {
+      // adjust for fixed header height (if needed, change 100 to match your header height)
+      const yOffset = -100; 
+      const y = section.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
+    }
+  });
+});
+
