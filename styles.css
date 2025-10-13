@@ -19,7 +19,7 @@ body {
   left: 0;
   width: 100%;
   background: #eef3f6;
-  padding: 1rem 1rem; 
+  padding: 0.5rem 0.5rem; 
   display: flex;
   align-items: center;  
   z-index: 1000;
@@ -59,7 +59,7 @@ body {
 .main-nav a:hover { background: rgba(255,255,255,0.04); border-radius:4px; }
 
 /* reserve space when anchors jump so header doesn't overlap content */
-section { scroll-margin-top: 110px; }
+/*section { scroll-margin-top: 110px; }
 
 /* =========================
    Section defaults
