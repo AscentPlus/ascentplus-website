@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Ambalapuzha Yogam Sangham Trust</title>
+    <link rel="stylesheet" href="./gallery.css"> 
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="shortcut icon" href="favicon.jpg">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="logo">
+            <i class="fas fa-om"></i> Ambalapuzha Yogam Petta Sangham
+        </div>
+        <ul class="nav-links">
+            <li><a href="./index.html">Home</a></li>
+            <li><a href="./index.html#about">About Us</a></li>
+            <li><a href="./history.html">History</a></li>
+            <li><a href="./index.html#events">Events</a></li>
+            <!-- <li><a href="./index.html#petta">Petta Thullal</a></li> -->
+            <li><a href="./index.html#calendar">Calendar</a></li>
+            <li><a href="./index.html#news">News</a></li>
+            <li><a href="./gallery.html" class="active">Gallery</a></li> 
+            <li><a href="./index.html#contact">Contact</a></li>
+            <li><a href="./payment.html" class="btn-donate">Donate</a></li>
+        </ul>
+        <div class="hamburger">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="section-title">Petta Thullal Photo Gallery</h2>
+            <p class="text-center">A glimpse into the sacred rituals and vibrant energy of the annual Petta Thullal journey.</p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(0)">
+                    <img src="timg1.jfif" alt="Petta Thullal ritual" loading="lazy">
+                </div>
+                
+                <div class="gallery-item" onclick="openLightbox(1)">
+                    <img src="timg2.png" alt="Procession drums" loading="lazy">
+                </div>
+                
+                <div class="gallery-item" onclick="openLightbox(2)">
+                    <img src="timg3.jpg" alt="Procession drums" loading="lazy">
+                </div>
+                
+                <div class="gallery-item" onclick="openLightbox(3)">
+                    <img src="timg4.jpg" alt="Procession drums" loading="lazy">
+                </div>
+                
+                <div class="gallery-item" onclick="openLightbox(4)">
+                    <img src="timg5.jpg" alt="Procession drums" loading="lazy">
+                </div>
+                
+                <div class="gallery-item" onclick="openLightbox(5)">
+                    <img src="timg6.jfif" alt="Procession drums" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(6)">
+                    <img src="img7.jfif" alt="Procession drums" loading="lazy">
+                </div>
+                <div class="gallery-item" onclick="openLightbox(7)">
+                    <img src="img8.jfif" alt="Procession drums" loading="lazy">
+                </div>
+
+            </div>
+
+            <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+                <div class="lightbox-content" onclick="event.stopPropagation()">
+                    
+                    <a class="prev-arrow" onclick="changeImage(-1); event.stopPropagation();">&#10094;</a> 
+                    
+                    <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                    
+                    <img id="lightbox-image" src="" alt="Full size gallery image">
+                    
+                    <a class="next-arrow" onclick="changeImage(1); event.stopPropagation();">&#10095;</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer id="contact">
+        <div class="container footer-grid">
+            <div class="footer-col">
+                <h3>Ambalapuzha Yogam Petta Sangham</h3>
+                <p>Preserving the divine legacy.</p>
+            </div>
+            <div class="footer-col">
+                <h3>Contact Us</h3>
+                <p><i class="fas fa-map-marker-alt"></i> Ambalapuzha, Kerala, India</p>
+                <p><i class="fas fa-phone"></i> +91 98765 43210</p>
+                <p><i class="fas fa-envelope"></i> info@pettasangham.org</p>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="./index.html#home">Home</a></li>
+                    <li><a href="./gallery.html">Gallery</a></li>
+                    <li><a href="./index.html#calendar">Calendar</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 Ambalapuzha Yogam Sangham Trust. All Rights Reserved.</p>
+        </div>
+    </footer>
+    
+    <script>
+        // --- 1. Data Structure (MUST match the images in the HTML) ---
+        const galleryImages = [
+            'timg1.jfif',
+            'timg2.png',
+            'timg3.jpg',
+            'timg4.jpg',
+            'timg5.jpg',
+            'timg6.jfif',
+            'img7.jfif',
+            'img8.jfif'
+        ];
+        let currentIndex = 0; // Global variable to track the currently viewed image index
+
+        // --- 2. Core Lightbox Functions ---
+
+        function showImage(index) {
+            // Handle wrapping around (the carousel effect)
+            if (index >= galleryImages.length) {
+                currentIndex = 0; // Wrap to the first image
+            } else if (index < 0) {
+                currentIndex = galleryImages.length - 1; // Wrap to the last image
+            } else {
+                currentIndex = index;
+            }
+
+            const lightboxImage = document.getElementById('lightbox-image');
+            // Set the image source based on the new index
+            lightboxImage.src = galleryImages[currentIndex];
+        }
+
+        function openLightbox(index) {
+            const lightbox = document.getElementById('lightbox');
+            
+            // Set the initial image and update the index
+            showImage(index); 
+
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.style.display = 'none';
+            document.body.style.overflow = 'auto'; 
+        }
+
+        function changeImage(step) {
+            // step is either +1 (next) or -1 (previous)
+            showImage(currentIndex + step);
+        }
+
+
+// edited
+        // --- MOBILE MENU TOGGLE SCRIPT ---
+const hamburger = document.querySelector('.hamburger');
+const navLinks = document.querySelector('.nav-links');
+const links = document.querySelectorAll('.nav-links li');
+
+hamburger.addEventListener('click', () => {
+    // 1. Toggle the side menu
+    navLinks.classList.toggle('nav-active');
+
+    // 2. Animate the Links (Optional: nice fade-in effect)
+    links.forEach((link, index) => {
+        if (link.style.animation) {
+            link.style.animation = '';
+        } else {
+            // Stagger the animation so they appear one by one
+            link.style.animation = `navLinkFade 0.5s ease forwards ${index / 7 + 0.3}s`;
+        }
+    });
+
+    // 3. Burger Animation (Optional: turns lines into X)
+    hamburger.classList.toggle('toggle');
+});
+
+// 4. Close menu when a link is clicked
+navLinks.addEventListener('click', () => {
+    navLinks.classList.remove('nav-active');
+    hamburger.classList.remove('toggle');
+});
+
+    </script> 
+</body>
+</html>

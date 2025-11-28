@@ -1,0 +1,982 @@
+/* --- 1. Global Variables (Color Palette) --- */
+:root {
+    --primary-color: #D35400; /* Deep Saffron / Ochre */
+    --secondary-color: #db812d; /* Golden Yellow */
+    --accent-color: #8E44AD; /* Royal Purple for contrast (optional) */
+    --text-color: #333333;
+    --bg-cream: #FFF8E1; /* Parchment/Traditional Background */
+    --bg-white: #FFFFFF;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+/* --- 2. General Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling when clicking links */
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--bg-white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* Add a small line under titles */
+.section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: var(--secondary-color);
+    display: block;
+    margin: 10px auto 0;
+}
+
+/* --- 4. Navigation Bar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 2%;
+    background-color: var(--bg-white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    font-weight: 600;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* Style for the active/current page link */
+.nav-links .active {
+    color: var(--secondary-color); /* Theme yellow/gold color */
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 3px;
+}
+
+.btn-donate {
+    background-color: var(--primary-color);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.btn-donate:hover {
+    background-color: #a04000;
+}
+
+.hamburger {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+}
+
+/* --- 5. Hero Section (Updated for Image Carousel) --- */
+.hero {
+    height: 80vh;
+    /* We remove background-image here and define it via JavaScript/CSS variable */
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    
+    /* Set a smooth transition for the image change */
+    transition: background-image 1s ease-in-out; 
+}
+
+/* Optional: Define the initial background using a CSS variable (or keep it as is) */
+.hero {
+    /* Set initial background */
+    background-image: var(--current-bg, url('timg3.jpg'));
+}
+
+.hero-overlay {
+    /* Keep this style as is */
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Slightly darker overlay for better text contrast */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 20px;
+}
+
+.hero-content h1 {
+    color: #fff;
+    font-size: 3.5rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+}
+
+.btn-primary {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 12px 30px;
+    border-radius: 5px;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    /* background-color: var(--primary-color); */
+    background-color: #ac3f00;
+    color:#ffffff;
+}
+
+/* --- 6. Sections Layout --- */
+.section-padding {
+    padding: 80px 5%;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.bg-cream {
+    background-color: var(--bg-cream);
+}
+
+/* About Grid */
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.about-text p {
+    text-align: justify;
+    text-justify: inter-word; /* Ensures better spacing between words */
+}
+
+/* Cards Grid (History/Features) */
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+    text-align: center;
+    transition: transform 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.icon-large {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+}
+
+.text-link {
+    color: var(--primary-color);
+    font-weight: bold;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* --- 7. News Section --- */
+.news-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.news-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.news-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.news-content {
+    padding: 20px;
+}
+
+.news-content .date {
+    font-size: 0.8rem;
+    color: #777;
+}
+
+/* --- 8. Donate Section --- */
+.donate-section {
+    background-color: var(--secondary-color);
+    color: white;
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.donate-section h2 {
+    color: white;
+}
+
+.btn-large {
+    font-size: 1.2rem;
+    background: white;
+    color: var(--primary-color);
+    margin-top: 30px;
+    cursor: pointer;
+    border: none;
+}
+
+/* --- 9. Footer --- */
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 60px 5% 20px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #34495e;
+    padding-top: 20px;
+    font-size: 0.9rem;
+}
+
+/* --- 10. Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* In a real app, you'd implement a JS toggle here */
+    }
+    .hamburger {
+        display: block;
+        font-size: 1.5rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+/* ---------------------------------
+   --- HISTORY PAGE SPECIFIC STYLES ---
+   --------------------------------- */
+
+.history-content {
+    max-width: 800px; /* Constrain width for better reading experience */
+    margin: 0 auto;
+    padding: 30px;
+    background-color: var(--bg-white);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+.subsection-title {
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    color: var(--primary-color); /* Use primary color for main subheadings */
+    margin-top: 35px;
+    margin-bottom: 15px;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+}
+
+.sub-heading {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* List Styling for Ritual Elements */
+.history-list {
+    list-style: none; /* Remove default bullets */
+    padding-left: 0;
+    margin-top: 20px;
+}
+
+.history-list li {
+    background-color: #fcf6e6; /* A slightly darker cream background for list items */
+    margin-bottom: 10px;
+    padding: 15px;
+    border-left: 4px solid var(--secondary-color); /* Thematic accent line */
+    border-radius: 4px;
+    line-height: 1.5;
+    font-weight: 400;
+}
+
+.history-list li strong {
+    color: var(--primary-color); /* Highlight key terms in the list */
+    font-weight: 700;
+}
+
+.history-content p {
+    margin-bottom: 20px;
+    text-align: justify;
+}
+#history{
+    background-color: #ffedd4;
+}
+#news,#about{
+    background-color: #fffbd8;
+}
+
+/* --- History Page Specific Styles for Responsiveness --- */
+
+/* 1. Default (Mobile First) - Cards will stack vertically */
+.history-content .card-grids {
+    /* Set margin only if it was not kept inline */
+    /* margin-top: 20px; */
+    display: block; /* Ensures the divs inside behave like blocks and stack */
+}
+
+.history-content .card-grids .cards {
+    margin-bottom: 20px; /* Add space between stacked cards on mobile */
+    padding: 15px; /* Add some padding to the cards */
+    border: 1px solid var(--border-color, #ccc); /* Optional: add a border for definition */
+    border-radius: 8px; /* Optional: rounded corners */
+}
+
+
+/* 2. Desktop/Tablet (Wider Screen) - Apply the 2-column grid layout */
+@media (min-width: 768px) {
+    /* Apply the grid layout for screens 768px and wider */
+    .card-grids {
+        display: grid;
+        /* Re-apply your desired desktop layout */
+        grid-template-columns: 1fr 1fr; 
+        gap: 20px; /* Add a gap between the grid columns */
+    }
+
+    .card-grids .cards {
+        margin-bottom: 0; /* Remove bottom margin when in grid layout */
+    }
+}
+
+
+
+
+
+
+/* --- CAROUSEL / SLIDER STYLES --- */
+
+.slider-container {
+    position: relative;
+    height: 450px; /* Adjust based on card height */
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider-track-container {
+    width: 90%; /* Leave space for arrows */
+    height: 100%;
+    overflow: hidden; /* Hides cards that are off-screen */
+    position: relative;
+}
+
+.slider-track {
+    display: flex;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    transition: transform 0.5s ease-in-out; /* Smooth sliding animation */
+}
+
+.news-slide {
+    /* Formula: 100% width divided by 3 cards = 33.333% */
+    min-width: 33.33%; 
+    box-sizing: border-box;
+    padding: 0 15px; /* Gap between cards */
+}
+
+.news-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    height: 100%; /* Ensure uniform height */
+    display: flex;
+    flex-direction: column;
+}
+
+.news-img {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.news-content {
+    padding: 20px;
+    flex-grow: 1; /* Pushes content to fill space */
+}
+
+.news-content h4 {
+    font-size: 1.1rem;
+    margin: 10px 0;
+}
+
+/* --- NAVIGATION BUTTONS --- */
+.slider-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--primary-color);
+    color: white;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.3s;
+}
+
+.slider-btn:hover {
+    background-color: var(--secondary-color);
+}
+
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+/* --- RESPONSIVE (Mobile & Tablet) --- */
+@media (max-width: 1024px) {
+    .news-slide {
+        min-width: 50%; /* Show 2 cards on tablet */
+    }
+}
+
+/* --- RESPONSIVE MOBILE MENU (Add/Replace at the bottom of CSS) --- */
+
+/* We use 1024px to catch tablets and ensure the menu doesn't break awkwardly */
+@media screen and (max-width: 1024px) {
+    
+    /* 1. Show the Hamburger Icon */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 2000; /* Ensure it sits on top */
+    }
+
+    /* 2. Style the Navigation Links as a Side Drawer */
+    .nav-links {
+        position: fixed; /* Fixed relative to the viewport */
+        right: 0px;
+        top: 0px; /* Start from very top */
+        height: 100vh; /* Full viewport height */
+        background-color: var(--bg-cream); /* Use your cream theme color */
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+        justify-content: center; /* Center items vertically */
+        width: 60%; /* Width of the side menu */
+        transform: translateX(100%); /* Hide it off-screen to the right */
+        transition: transform 0.4s ease-in-out; /* Smooth slide animation */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Shadow for depth */
+        z-index: 1500;
+        gap: 25px; /* Space between links */
+    }
+
+    /* 3. The class JavaScript will add to show the menu */
+    .nav-links.nav-active {
+        transform: translateX(0%); /* Slide into view */
+    }
+
+    /* 4. Style the links inside the mobile menu */
+    .nav-links li {
+        opacity: 0; /* Hidden initially for animation */
+        animation: navLinkFade 0.5s ease forwards 0.3s;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem; /* Larger text for mobile */
+        color: var(--primary-color);
+    }
+}
+
+/* Animation for links fading in */
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+
+
+
+
+
+/* --- MARQUEE BAR STYLES --- */
+
+/* 1. The Container Strip */
+.marquee-bar {
+    width: 100%;
+    background-color: var(--primary-color); /* Uses your theme Saffron color */
+    color: white;
+    padding: 12px 0;
+    overflow: hidden; /* Cuts off text that goes outside */
+    white-space: nowrap;
+    position: relative;
+    z-index: 900; /* Below navbar but above hero content */
+    border-bottom: 2px solid var(--secondary-color); /* Optional gold border */
+}
+
+/* 2. The Moving Track */
+.track {
+    display: flex;
+    width: fit-content; /* Adjusts to content size */
+    animation: scroll-text 20s linear infinite; /* Adjust '20s' to change speed */
+}
+
+/* 3. The Content Groups */
+.track .content {
+    display: flex;
+    align-items: center;
+}
+
+/* 4. The Text Styling */
+.track span {
+    font-family: 'Manjari', sans-serif; /* Malayalam Font */
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-left: 40px; /* Space before text */
+}
+
+/* 5. The Star Icon Styling */
+.custom-star {
+    font-size: 0.8rem;
+    color: var(--secondary-color); /* Gold color for star */
+    margin-left: 40px; /* Space after text */
+    opacity: 0.8;
+}
+
+/* 6. The Animation Keyframes */
+@keyframes scroll-text {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%); /* Move exactly half way (the length of one set) */
+    }
+}
+
+
+
+
+/* --- DROPDOWN MENU STYLES --- */
+
+/* 1. The Container (The 'Events' link) */
+.dropdown {
+    position: relative; 
+}
+
+/* 2. The White Window (Hidden by default) */
+.dropdown-menu {
+    display: none; 
+    position: absolute; 
+    top: 100%; 
+    left: 0;
+    background-color: #ffffff; 
+    min-width: 220px; 
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2); 
+    z-index: 2000; 
+    border: 3px solid var(--secondary-color); 
+    border-radius: 0 0 4px 4px;
+
+    /* --- NEW SCROLLING LOGIC FOR DESKTOP --- */
+    max-height: 400px; /* Sets a maximum height for the dropdown on desktop */
+    overflow-y: auto; /* Enables internal scrolling when content exceeds max-height */
+    /* The combination of max-height and overflow-y: auto restricts scrolling to this element */
+    /* -------------------------------------- */
+}
+
+/* 3. Show the menu when hovering over 'Events' */
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+/* 4. Style the Links inside the window */
+.dropdown-menu li {
+    display: block;
+    width: 100%;
+}
+
+.dropdown-menu a {
+    color: #333; 
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block; 
+    font-size: 0.95rem;
+    transition: background 0s;
+    text-align: left; 
+    border-bottom: 1px solid #f1f1f1; 
+}
+
+/* 5. Hover effect on the inner links */
+.dropdown-menu a:hover {
+    background-color: #f9f9f9; 
+    color: var(--secondary-color); 
+    padding-left: 20px; 
+}
+
+
+
+/* ##################### */
+/* --- MOBILE MENU & DROPDOWN ADJUSTMENTS (CSS Hover Flyout) --- */
+@media screen and (max-width: 1024px) {
+    
+    /* Ensure the parent 'Events' link allows positioning */
+    .dropdown {
+        position: relative;
+        width: 100%;
+        text-align: center; 
+    }
+
+    /* Style the Dropdown Window for Mobile (Flyout Left with White BG) */
+    .dropdown-menu {
+        position: absolute;
+        top: 0; 
+        right: 98%; 
+        left: auto;
+        
+        /* White Box Styling */
+        background-color: #ffffff;
+        min-width: 250px;
+        box-shadow: -5px 5px 15px rgba(0,0,0,0.2); 
+        border-radius: 4px;
+        border-top: 3px solid var(--secondary-color);
+        
+        display: none; 
+        z-index: 21000;
+        margin-right: 10px; 
+
+        /* --- NEW SCROLLING LOGIC FOR MOBILE --- */
+        max-height: 55vh; /* Use viewport height for better responsiveness on small screens */
+        overflow-y: auto; /* Enables internal scrolling on touch/swipe */
+        /* -------------------------------------- */
+    }
+
+    /* This is the key: Show on Hover (or first tap on touchscreens) */
+    .dropdown:hover .dropdown-menu {
+        display: block; 
+    }
+
+    /* Styling the links inside the flyout */
+    .dropdown-menu a {
+        color: #333;
+        font-size: 1.25rem;
+        padding: 20px 16px;
+        border-bottom: 1px solid #f1f1f1;
+        text-align: left;
+    }
+
+    /* Optional: Arrow pointing towards the sidebar */
+    .dropdown-menu::after {
+        content: "";
+        position: absolute;
+        top: 15px;
+        right: -10px; 
+        border-width: 5px;
+        border-style: solid;
+        border-color: transparent transparent transparent #ffffff; 
+    }
+}
+
+
+
+
+/* --- OFFICE BEARERS SECTION STYLES --- */
+/* Add this to reduce the top/bottom space of the whole section */
+#bearers {
+    padding: 20px 5%; /* Changed from 80px to 40px */
+}
+
+/* 1. Grid Layout for the Cards */
+.bearers-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-top: 40px;
+    justify-content: center;
+    padding-left: 20px;
+}
+
+/* 2. Individual Card Style */
+.bearer-card {
+    background: #e9c89e;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05); /* Soft shadow */
+    overflow: hidden;
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border-top: 5px solid var(--primary-color); /* Saffron top border */
+    position: relative;
+    padding-bottom: 30px;
+    /* Add this line to limit the maximum width */
+    max-width: 280px; 
+    /* margin: 0 auto;  */
+    /* Keeps it centered */
+    transform: translateX(10px);
+}
+
+/* Hover Effect: Lifts the card slightly */
+/* .bearer-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+} */
+
+/* 3. Image Container (Circular) */
+.bearer-img-box {
+    width: 120px;
+    height: 120px;
+    margin: 20px auto 20px; /* Center horizontally */
+    position: relative;
+}
+
+.bearer-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%; /* Makes image circular */
+    border: 4px solid var(--secondary-color); /* Gold border around photo */
+    padding: 3px; /* Space between photo and border */
+    background-color: white;
+}
+
+/* 4. Text Styling */
+.bearer-info h3 {
+    font-size: 1.4rem;
+    color: var(--text-color);
+    margin-bottom: 5px;
+    font-weight: 700;
+}
+
+.bearer-info .role {
+    display: block;
+    font-family: var(--font-body);
+    color: var(--primary-color); /* Saffron color for the Role */
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* A small visual divider line */
+.bearer-info .divider {
+    width: 50px;
+    height: 2px;
+    background-color: #eee;
+    margin: 15px auto;
+}
+
+.bearer-info p {
+    font-size: 0.95rem;
+    color: #383838;
+    margin-bottom: 8px;
+}
+
+.bearer-info i {
+    color: var(--secondary-color);
+    margin-right: 8px;
+    width: 15px;
+}
+
+
+
+
+/* --- LEGACY / TRIBUTE SECTION STYLES --- */
+
+#legacy {
+    background-color: var(--bg-cream); /* Use your theme cream color */
+    padding: 50px 5%; /* Smaller padding for a compact section */
+    border-bottom: 1px solid #e0dacc; /* Subtle separator line */
+}
+
+.legacy-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Vertically center */
+    flex-wrap: wrap; /* Allows stacking on mobile */
+    gap: 60px; /* Space between the two people */
+    margin-top: 30px;
+}
+
+.legacy-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 350px;
+}
+
+/* The Circular Image Styling */
+.legacy-img-frame {
+    width: 130px;
+    height: 130px;
+    padding: 5px;
+    border: 2px solid var(--secondary-color); /* Gold outer thin ring */
+    border-radius: 50%;
+    margin-bottom: 15px;
+    background-color: #fff;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.legacy-img-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color); /* Saffron inner ring */
+}
+
+/* Typography */
+.legacy-details h3 {
+    font-family: var(--font-heading);
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.legacy-role {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+}
+
+.legacy-details p {
+    font-size: 0.9rem;
+    color: #555;
+    font-style: italic; /* Makes it look like a tribute */
+    line-height: 1.4;
+}
+
+/* The Vertical Line between them (Desktop only) */
+.legacy-divider {
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, var(--secondary-color), transparent);
+    display: block;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .legacy-wrapper {
+        flex-direction: column; /* Stack them on mobile */
+        gap: 40px;
+    }
+    
+    /* Hide the vertical line on mobile */
+    .legacy-divider {
+        display: none; 
+    }
+}

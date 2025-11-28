@@ -1,0 +1,366 @@
+/* --- 1. Global Variables (Color Palette) --- */
+:root {
+    --primary-color: #D35400; /* Deep Saffron / Ochre */
+    --secondary-color: #db812d; /* Golden Yellow */
+    --accent-color: #8E44AD; /* Royal Purple for contrast (optional) */
+    --text-color: #333333;
+    --bg-cream: #FFF8E1; /* Parchment/Traditional Background */
+    --bg-white: #FFFFFF;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+/* --- 2. General Resets --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Smooth scrolling when clicking links */
+}
+
+body {
+    font-family: var(--font-body);
+    color: var(--text-color);
+    line-height: 1.6;
+    background-color: var(--bg-white);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+/* --- 3. Typography --- */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 50px;
+    position: relative;
+}
+
+/* Add a small line under titles */
+.section-title::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: var(--secondary-color);
+    display: block;
+    margin: 10px auto 0;
+}
+
+/* --- 4. Navigation Bar --- */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 2%;
+    background-color: var(--bg-white);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-family: var(--font-heading);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.nav-links {
+    display: flex;
+    gap: 20px;
+}
+
+.nav-links a {
+    font-weight: 600;
+    transition: color 0.3s;
+    font-size: 0.9rem;
+}
+
+.nav-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* Style for the active/current page link */
+.nav-links .active {
+    color: var(--secondary-color); /* Theme yellow/gold color */
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 3px;
+}
+
+.btn-donate {
+    background-color: var(--primary-color);
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+    transition: background 0.3s;
+}
+
+.btn-donate:hover {
+    background-color: #a04000;
+}
+
+.hamburger {
+    display: none; /* Hidden on desktop */
+    cursor: pointer;
+}
+
+footer {
+    background-color: #2c3e50;
+    color: #ecf0f1;
+    padding: 60px 5% 20px;
+    margin-top: 30px;
+}
+
+.footer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 40px;
+    margin-bottom: 40px;
+}
+
+.footer-col h3 {
+    color: var(--secondary-color);
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+}
+
+.footer-col ul li {
+    margin-bottom: 10px;
+}
+
+.footer-col i {
+    margin-right: 10px;
+    width: 20px;
+}
+
+.copyright {
+    text-align: center;
+    border-top: 1px solid #34495e;
+    padding-top: 20px;
+    font-size: 0.9rem;
+}
+
+/* --- 10. Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none; /* In a real app, you'd implement a JS toggle here */
+    }
+    .hamburger {
+        display: block;
+        font-size: 1.5rem;
+    }
+    
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* edited */
+/* --- RESPONSIVE MOBILE MENU (Add/Replace at the bottom of CSS) --- */
+
+/* We use 1024px to catch tablets and ensure the menu doesn't break awkwardly */
+@media screen and (max-width: 1024px) {
+    
+    /* 1. Show the Hamburger Icon */
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 2000; /* Ensure it sits on top */
+    }
+
+    /* 2. Style the Navigation Links as a Side Drawer */
+    .nav-links {
+        position: fixed; /* Fixed relative to the viewport */
+        right: 0px;
+        top: 0px; /* Start from very top */
+        height: 100vh; /* Full viewport height */
+        background-color: var(--bg-cream); /* Use your cream theme color */
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center;
+        justify-content: center; /* Center items vertically */
+        width: 60%; /* Width of the side menu */
+        transform: translateX(100%); /* Hide it off-screen to the right */
+        transition: transform 0.4s ease-in-out; /* Smooth slide animation */
+        box-shadow: -5px 0 15px rgba(0,0,0,0.1); /* Shadow for depth */
+        z-index: 1500;
+        gap: 25px; /* Space between links */
+    }
+
+    /* 3. The class JavaScript will add to show the menu */
+    .nav-links.nav-active {
+        transform: translateX(0%); /* Slide into view */
+    }
+
+    /* 4. Style the links inside the mobile menu */
+    .nav-links li {
+        opacity: 0; /* Hidden initially for animation */
+        animation: navLinkFade 0.5s ease forwards 0.3s;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem; /* Larger text for mobile */
+        color: var(--primary-color);
+    }
+}
+
+/* Animation for links fading in */
+@keyframes navLinkFade {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }
+}
+
+/* 3333333333333333333333333333333333333 */
+
+
+
+/* --- Gallery Specific Styles --- */
+.gallery-grid {
+    display: grid;
+    /* Create responsive columns: minimum 300px wide, max available space */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 20px;
+    margin-top: 40px;
+}
+
+.gallery-item {
+    overflow: hidden;
+    border-radius: 1px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+}
+
+.gallery-item:hover {
+    transform: scale(1.03); /* Zoom effect on hover */
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 300px; /* Uniform height for all images */
+    object-fit: cover; /* Ensures images cover the area without distortion */
+    display: block;
+}
+
+.text-center {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+
+
+
+
+
+/* --- Lightbox Styles --- */
+.lightbox {
+    /* Hidden by default, shown by JavaScript */
+    display: none; 
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Dark, transparent overlay */
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer; /* Indicates the whole background can be clicked to close */
+}
+
+.lightbox-content {
+    position: relative;
+    max-width: 90%;
+    max-height: 90%;
+    /* Stop click from closing the lightbox when clicking the image itself */
+    cursor: default; 
+}
+
+.lightbox-content img {
+    /* Full-size image styling */
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100vh; /* Viewport height constraint */
+    display: block;
+    border-radius: 5px;
+    object-fit: contain;
+}
+
+.lightbox-close {
+    position: absolute;
+    top: -30px; /* Position above the image */
+    right: 0px;
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    line-height: 1;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+}
+
+.lightbox-close:hover {
+    opacity: 1;
+}
+
+
+
+/* --- Navigation Arrow Styles --- */
+
+.prev-arrow, .next-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 50px;
+    font-weight: bold;
+    color: white;
+    padding: 0 15px;
+    user-select: none; /* Prevents text selection on click */
+    /* opacity: 0.7; */
+    transition: opacity 0.2s;
+    z-index: 2001; /* Ensure arrows are above the image */
+}
+
+.prev-arrow:hover, .next-arrow:hover {
+    opacity: 0.7;
+}
+
+.prev-arrow {
+    left: 10px;
+}
+
+.next-arrow {
+    right: 10px;
+}
+
+
+
