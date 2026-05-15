@@ -397,43 +397,6 @@ section {
   gap: 1.5rem;
 }
 
-/* Language toggle pill */
-.lang-toggle-wrapper {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: -0.5rem;
-}
-
-.lang-toggle {
-  display: inline-flex;
-  border: 1.5px solid rgba(0, 153, 204, 0.3);
-  border-radius: 50px;
-  overflow: hidden;
-  background: var(--clr-bg);
-}
-
-.lang-btn {
-  border: none;
-  background: transparent;
-  padding: 0.35rem 1rem;
-  font-family: inherit;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.04em;
-  color: var(--clr-primary);
-  cursor: pointer;
-  transition: background var(--transition), color var(--transition);
-}
-
-.lang-btn.active {
-  background: linear-gradient(135deg, var(--clr-primary) 0%, var(--clr-primary-dark) 100%);
-  color: #fff;
-}
-
-.lang-btn:not(.active):hover {
-  background: rgba(0, 153, 204, 0.1);
-}
-
 .form-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
