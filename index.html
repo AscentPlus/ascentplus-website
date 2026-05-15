@@ -175,6 +175,12 @@
       </p>
 
       <form id="internshipForm" class="internship-form">
+        <div class="lang-toggle-wrapper">
+          <div class="lang-toggle" id="langToggle">
+            <button type="button" class="lang-btn active" id="btnEN" data-lang="en">EN</button>
+            <button type="button" class="lang-btn" id="btnML" data-lang="ml">ML</button>
+          </div>
+        </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="name">Name*</label>
@@ -350,11 +356,12 @@
       <div class="contact-column">
         <h3>Follow Us</h3>
         <div class="contact-social">
-          <a href="https://www.facebook.com/AscentPlus/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><img
-              src="images/fb_logo.png" alt="Facebook" loading="lazy" /></a>
-          <a href="https://x.com/AscentPlus" target="_blank" rel="noopener noreferrer" aria-label="X"><img src="images/x_logo.png" alt="X" loading="lazy" /></a>
-          <a href="https://www.youtube.com/channel/UC_zeBOGLfDLjRmx_AWylaQw" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><img
-              src="images/yt_logo.png" alt="YouTube" loading="lazy" /></a>
+          <a href="https://www.facebook.com/AscentPlus/" target="_blank" rel="noopener noreferrer"
+            aria-label="Facebook"><img src="images/fb_logo.png" alt="Facebook" loading="lazy" /></a>
+          <a href="https://x.com/AscentPlus" target="_blank" rel="noopener noreferrer" aria-label="X"><img
+              src="images/x_logo.png" alt="X" loading="lazy" /></a>
+          <a href="https://www.youtube.com/channel/UC_zeBOGLfDLjRmx_AWylaQw" target="_blank" rel="noopener noreferrer"
+            aria-label="YouTube"><img src="images/yt_logo.png" alt="YouTube" loading="lazy" /></a>
         </div>
       </div>
     </div>
@@ -376,13 +383,12 @@
   </footer>
 
   <!-- ========================= FLOATING PAY BUTTON ========================= -->
-  <div id="floatingPayBtn" class="floating-pay-btn" role="button" tabindex="0" aria-label="Make a Payment">
-    <span class="pay-icon">₹</span>
-    <span class="pay-label">Pay Now</span>
-  </div>
+  <!-- <div id="floatingPayBtn" class="floating-pay-btn" role="button" tabindex="0" aria-label="Make a Payment">
+    <span class="pay-label">Test Payment</span>
+  </div> -->
 
   <!-- Payment Details Form Overlay -->
-  <div id="paymentFormOverlay" class="payment-form-overlay" style="display:none;" role="dialog" aria-modal="true"
+  <!-- <div id="paymentFormOverlay" class="payment-form-overlay" style="display:none;" role="dialog" aria-modal="true"
     aria-labelledby="payFormTitle">
     <div class="payment-form-backdrop" id="payFormBackdrop"></div>
     <div class="payment-form-card">
@@ -390,7 +396,7 @@
       <div class="payment-form-header">
         <span class="payment-form-icon">₹</span>
         <h3 id="payFormTitle">Test Payment</h3>
-        <p>This is a test payment window to showcase how the payment gateway works. </p>
+        <p>This is a test payment window to showcase how the payment gateway works. No real money is involved.</p>
       </div>
       <form id="paymentDetailsForm" class="payment-details-form" novalidate>
         <div class="pay-form-group">
@@ -409,15 +415,10 @@
           <label for="payAmount">Amount (₹) *</label>
           <input type="number" id="payAmount" name="payAmount" placeholder="Enter amount" min="1" required>
         </div>
-        <!-- <div class="pay-form-group">
-          <label for="payDescription">Description</label>
-          <input type="text" id="payDescription" name="payDescription"
-            placeholder="e.g. Software purchase, Internship fee">
-        </div> -->
         <button type="submit" class="pay-proceed-btn" id="payProceedBtn">Proceed to Pay</button>
       </form>
     </div>
-  </div>
+  </div> -->
 
   <script src="script.js" defer></script>
 

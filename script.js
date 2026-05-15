@@ -231,7 +231,8 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
   });
 })();
 
-// ========================= Razorpay Standard Checkout =========================
+// ========================= Razorpay Standard Checkout (Deactivated) =========================
+/*
 (function () {
   var floatingBtn = document.getElementById('floatingPayBtn');
   var overlay = document.getElementById('paymentFormOverlay');
@@ -359,5 +360,87 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
     proceedBtn.textContent = 'Opening Payment...';
 
     loadRazorpayThenCheckout(openRazorpayCheckout);
+  });
+})();
+*/
+
+// ========================= Language Toggle & Transliteration =========================
+(function () {
+  const btnEN = document.getElementById('btnEN');
+  const btnML = document.getElementById('btnML');
+  const targetIds = ['name', 'place', 'college', 'course'];
+
+  let currentLang = 'en'; // Default typing mode must be English
+
+  if (!btnEN || !btnML) return;
+
+  // Handler for transliteration input
+  async function handleTransliteration(e) {
+    if (currentLang !== 'ml') return;
+
+    // We only trigger transliteration on space or enter
+    if (e.data === ' ' || e.inputType === 'insertLineBreak') {
+      const el = e.target;
+      const text = el.value;
+
+      // Find the last word typed
+      const words = text.split(/(?=\s+)|(?<=\s+)/); // keep spaces separate
+      if (words.length < 2) return;
+
+      // The word to transliterate is the one before the space/newline
+      let wordToTransliterateIndex = words.length - 1;
+      while (wordToTransliterateIndex >= 0 && words[wordToTransliterateIndex].trim() === '') {
+        wordToTransliterateIndex--;
+      }
+
+      if (wordToTransliterateIndex < 0) return;
+      const word = words[wordToTransliterateIndex];
+
+      // Don't transliterate if it contains non-english alphabet chars
+      if (!/^[a-zA-Z]+$/.test(word)) return;
+
+      try {
+        const response = await fetch(`https://inputtools.google.com/request?text=${encodeURIComponent(word)}&itc=ml-t-i0-und&num=1&cp=0&cs=1&ie=utf-8&oe=utf-8&app=test`);
+        const data = await response.json();
+
+        if (data[0] === 'SUCCESS' && data[1][0] && data[1][0][1] && data[1][0][1].length > 0) {
+          const transliteratedWord = data[1][0][1][0];
+          words[wordToTransliterateIndex] = transliteratedWord;
+
+          // Preserve cursor position
+          const cursorPos = el.selectionStart;
+
+          el.value = words.join('');
+
+          // Adjust cursor based on length difference
+          const diff = transliteratedWord.length - word.length;
+          el.setSelectionRange(cursorPos + diff, cursorPos + diff);
+        }
+      } catch (err) {
+        console.error('Transliteration API error:', err);
+      }
+    }
+  }
+
+  // Attach listeners
+  targetIds.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.addEventListener('input', handleTransliteration);
+    }
+  });
+
+  btnEN.addEventListener('click', () => {
+    if (currentLang === 'en') return;
+    currentLang = 'en';
+    btnEN.classList.add('active');
+    btnML.classList.remove('active');
+  });
+
+  btnML.addEventListener('click', () => {
+    if (currentLang === 'ml') return;
+    currentLang = 'ml';
+    btnML.classList.add('active');
+    btnEN.classList.remove('active');
   });
 })();
