@@ -680,6 +680,20 @@ section {
   box-shadow: var(--shadow-lg);
 }
 
+/* Product card background images (moved from inline styles) */
+.card-bg-erp { background-image: url('images/ERP.jpg'); }
+.card-bg-accounting { background-image: url('images/Accounting.jpg'); }
+.card-bg-church { background-image: url('images/Church.jpg'); }
+.card-bg-temple { background-image: url('images/Temple.jpg'); }
+.card-bg-billing { background-image: url('images/Billing.jpg'); }
+.card-bg-webdev { background-image: url('images/Web_Dev.jpg'); }
+.card-bg-school { background-image: url('images/School%20%26%20College.jpg'); }
+.card-bg-library { background-image: url('images/Library.jpg'); }
+.card-bg-hostel { background-image: url('images/Hostel.jpg'); }
+.card-bg-db { background-image: url('images/DB.jpg'); }
+.card-bg-residents { background-image: url('images/Residents.jpg'); }
+.card-bg-construction { background-image: url('images/Construction.jpg'); }
+
 /* =========================
    Our Customers
    ========================= */
@@ -749,6 +763,18 @@ section {
   line-height: 1.35;
 }
 
+/* Customer card background images (moved from inline styles) */
+.customer-bg-1 { background-image: url('images/customer_1.png'); }
+.customer-bg-2 { background-image: url('images/customer_2.png'); }
+.customer-bg-3 { background-image: url('images/customer_3.png'); }
+.customer-bg-4 { background-image: url('images/customer_4.png'); }
+.customer-bg-5 { background-image: url('images/customer_5.png'); }
+.customer-bg-6 { background-image: url('images/customer_6.png'); }
+.customer-bg-7 { background-image: url('images/customer_7.png'); }
+.customer-bg-8 { background-image: url('images/customer_8.png'); }
+.customer-bg-9 { background-image: url('images/customer_9.png'); }
+.customer-bg-10 { background-image: url('images/customer_10.png'); }
+
 /* =========================
    Contact section
    ========================= */
@@ -792,6 +818,17 @@ section {
   font-size: 0.95rem;
 }
 
+.contact-column a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.contact-column a:hover,
+.contact-column a:focus-visible {
+  color: var(--clr-primary);
+  text-decoration: underline;
+}
+
 .contact-social {
   margin-top: 0.8rem;
   display: flex;
@@ -833,6 +870,8 @@ section {
 
 .map-container iframe {
   display: block;
+  border: 0;
+  width: 100%;
 }
 
 /* =========================

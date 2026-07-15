@@ -10,10 +10,16 @@
   <meta name="author" content="Ascent Plus">
   <meta name="keywords"
     content="Ascent Plus, Internships, Software development company, IT services in Alappuzha, Billing software">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https://script.google.com https://script.googleusercontent.com https://inputtools.google.com; frame-src https://www.google.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests;">
   <link rel="canonical" href="https://ascentplus.net/">
   <link rel="icon" type="image/png" href="images/favicon.png" />
+  <link rel="preload" href="images/ap_logo_full.png" as="image">
+  <link rel="preload" href="images/slider_img_1.jpg" as="image">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Google Fonts does not support stable SRI (CSS is user-agent dependent); self-host fonts if SRI is required -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
   <script type="application/ld+json">
@@ -79,12 +85,12 @@
         Exciting Internship Opportunities Available! Apply Now!
       </div>
     </a>
-    <div class="slider" role="region" aria-live="polite">
-      <div class="slide active"><img src="images/slider_img_1.jpg" alt="Slide 1" /></div>
-      <div class="slide"><img src="images/slider_img_2.jpg" alt="Slide 2" /></div>
-      <div class="slide"><img src="images/slider_img_3.jpg" alt="Slide 3" /></div>
-      <div class="slide"><img src="images/slider_img_4.jpg" alt="Slide 4" /></div>
-      <div class="slide"><img src="images/slider_img_5.jpg" alt="Slide 5" /></div>
+    <div class="slider" role="region" aria-live="polite" aria-label="Image carousel">
+      <div class="slide active"><img src="images/slider_img_1.jpg" alt="Ascent Plus showcase image 1" width="1920" height="600" fetchpriority="high" /></div>
+      <div class="slide"><img src="images/slider_img_2.jpg" alt="Ascent Plus showcase image 2" width="1920" height="600" loading="lazy" /></div>
+      <div class="slide"><img src="images/slider_img_3.jpg" alt="Ascent Plus showcase image 3" width="1920" height="600" loading="lazy" /></div>
+      <div class="slide"><img src="images/slider_img_4.jpg" alt="Ascent Plus showcase image 4" width="1920" height="600" loading="lazy" /></div>
+      <div class="slide"><img src="images/slider_img_5.jpg" alt="Ascent Plus showcase image 5" width="1920" height="600" loading="lazy" /></div>
     </div>
     <div class="slider-dots" id="sliderDots"></div>
   </section>
@@ -174,45 +180,45 @@
         below to apply for an internship.
       </p>
 
-      <form id="internshipForm" class="internship-form">
+      <form id="internshipForm" class="internship-form" action="#" method="post" autocomplete="on">
         <div class="lang-toggle-wrapper">
-          <div class="lang-toggle" id="langToggle">
-            <button type="button" class="lang-btn active" id="btnEN" data-lang="en">EN</button>
-            <button type="button" class="lang-btn" id="btnML" data-lang="ml">ML</button>
+          <div class="lang-toggle" id="langToggle" role="group" aria-label="Typing language">
+            <button type="button" class="lang-btn active" id="btnEN" data-lang="en" aria-pressed="true" aria-label="Type in English">EN</button>
+            <button type="button" class="lang-btn" id="btnML" data-lang="ml" aria-pressed="false" aria-label="Type in Malayalam">ML</button>
           </div>
         </div>
         <div class="form-grid">
           <div class="form-group">
             <label for="name">Name*</label>
-            <input type="text" id="name" name="name" required placeholder="Your full name">
+            <input type="text" id="name" name="name" required placeholder="Your full name" autocomplete="name" maxlength="100">
           </div>
           <div class="form-group">
             <label for="email">E-mail ID*</label>
-            <input type="email" id="email" name="email" required placeholder="your.email@example.com">
+            <input type="email" id="email" name="email" required placeholder="your.email@example.com" autocomplete="email" maxlength="254">
           </div>
           <div class="form-group">
             <label for="phone">Phone Number*</label>
-            <input type="tel" id="phone" name="phone" required placeholder="Phone number">
+            <input type="tel" id="phone" name="phone" required placeholder="Phone number" autocomplete="tel" maxlength="20">
           </div>
           <div class="form-group">
             <label for="place">Place*</label>
-            <input type="text" id="place" name="place" required placeholder="Location">
+            <input type="text" id="place" name="place" required placeholder="Location" autocomplete="address-level2" maxlength="100">
           </div>
           <div class="form-group">
             <label for="college">College*</label>
-            <input type="text" id="college" name="college" required placeholder="Your college name">
+            <input type="text" id="college" name="college" required placeholder="Your college name" autocomplete="organization" maxlength="150">
           </div>
           <div class="form-group">
             <label for="semester">Semester*</label>
-            <input type="text" id="semester" name="semester" required placeholder="Current semester">
+            <input type="text" id="semester" name="semester" required placeholder="Current semester" autocomplete="off" maxlength="50">
           </div>
           <div class="form-group">
             <label for="course">Course*</label>
-            <input type="text" id="course" name="course" required placeholder="B.Tech, BCA, B.Com, etc.">
+            <input type="text" id="course" name="course" required placeholder="B.Tech, BCA, B.Com, etc." autocomplete="off" maxlength="100">
           </div>
           <div class="form-group">
             <label for="internship_type">Internship*</label>
-            <select id="internship_type" name="internship_type" required>
+            <select id="internship_type" name="internship_type" required autocomplete="off">
               <option value="" disabled selected>Select an option</option>
               <option value="Web Development">Web Development</option>
               <option value="Python Programming">Python Programming</option>
@@ -222,7 +228,7 @@
           </div>
         </div>
         <button type="submit" class="submit-btn" id="submitBtn">Submit Application</button>
-        <div id="formMessage" class="form-message"></div>
+        <div id="formMessage" class="form-message" role="status" aria-live="polite"></div>
       </form>
     </div>
   </section>
@@ -231,63 +237,63 @@
   <section id="products" aria-labelledby="services-heading">
     <h2 class="section-title" id="services-heading">Our Products</h2>
     <div class="services-grid">
-      <div class="card reveal" style="background-image: url('images/ERP.jpg');">
-        <div class="icon-circle"><img src="images/erp_logo.png" alt="ERP" loading="lazy" /></div>
+      <div class="card reveal card-bg-erp">
+        <div class="icon-circle"><img src="images/erp_logo.png" alt="ERP Solutions icon" loading="lazy" width="46" height="46" /></div>
         <h2>ERP Solutions</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Accounting.jpg');">
-        <div class="icon-circle"><img src="images/accounting_logo.png" alt="Accounting" loading="lazy" /></div>
+      <div class="card reveal card-bg-accounting">
+        <div class="icon-circle"><img src="images/accounting_logo.png" alt="Accounting Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>Accounting Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Church.jpg');">
-        <div class="icon-circle"><img src="images/church_logo.png" alt="Church" loading="lazy" /></div>
+      <div class="card reveal card-bg-church">
+        <div class="icon-circle"><img src="images/church_logo.png" alt="Church Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>Church Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Temple.jpg');">
-        <div class="icon-circle"><img src="images/temple_logo.png" alt="Temple" loading="lazy" /></div>
+      <div class="card reveal card-bg-temple">
+        <div class="icon-circle"><img src="images/temple_logo.png" alt="Temple Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>Temple Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Billing.jpg');">
-        <div class="icon-circle"><img src="images/billing_logo.png" alt="Billing" /></div>
+      <div class="card reveal card-bg-billing">
+        <div class="icon-circle"><img src="images/billing_logo.png" alt="GST Billing Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>GST Billing Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Web_Dev.jpg');">
-        <div class="icon-circle"><img src="images/web_logo.png" alt="Web Dev" loading="lazy" /></div>
+      <div class="card reveal card-bg-webdev">
+        <div class="icon-circle"><img src="images/web_logo.png" alt="Website Development icon" loading="lazy" width="46" height="46" /></div>
         <h2>Website Development</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/School %26 College.jpg');">
-        <div class="icon-circle"><img src="images/school_logo.png" alt="School" loading="lazy" /></div>
+      <div class="card reveal card-bg-school">
+        <div class="icon-circle"><img src="images/school_logo.png" alt="School and College Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>School &amp; College Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Library.jpg');">
-        <div class="icon-circle"><img src="images/library_logo.png" alt="Library" loading="lazy" /></div>
+      <div class="card reveal card-bg-library">
+        <div class="icon-circle"><img src="images/library_logo.png" alt="Library Management Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>Library Management Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Hostel.jpg');">
-        <div class="icon-circle"><img src="images/hostel_logo.png" alt="Hostel" loading="lazy" /></div>
+      <div class="card reveal card-bg-hostel">
+        <div class="icon-circle"><img src="images/hostel_logo.png" alt="Hostel Management Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>Hostel Management Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/DB.jpg');">
-        <div class="icon-circle"><img src="images/db_logo.png" alt="DB" loading="lazy" /></div>
+      <div class="card reveal card-bg-db">
+        <div class="icon-circle"><img src="images/db_logo.png" alt="Database Management icon" loading="lazy" width="46" height="46" /></div>
         <h2>Database Management</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Residents.jpg');">
-        <div class="icon-circle"><img src="images/residents_logo.png" alt="Residents" loading="lazy" /></div>
+      <div class="card reveal card-bg-residents">
+        <div class="icon-circle"><img src="images/residents_logo.png" alt="Residents Association Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>Residents Association Software</h2>
       </div>
 
-      <div class="card reveal" style="background-image: url('images/Construction.jpg');">
-        <div class="icon-circle"><img src="images/construction_logo.png" alt="Construction" loading="lazy" /></div>
+      <div class="card reveal card-bg-construction">
+        <div class="icon-circle"><img src="images/construction_logo.png" alt="Construction Management Software icon" loading="lazy" width="46" height="46" /></div>
         <h2>Construction Management Software</h2>
       </div>
     </div>
@@ -297,34 +303,34 @@
   <section id="customers" aria-labelledby="customers-heading">
     <h2 class="section-title" id="customers-heading">Our Top Customers</h2>
     <div class="customers-grid">
-      <div class="customer-card reveal" style="background-image: url('images/customer_1.png');">
+      <div class="customer-card reveal customer-bg-1">
         <p>Oachira Parabrahma Temple</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_2.png');">
+      <div class="customer-card reveal customer-bg-2">
         <p>District Tourism Promotion Council, Alappuzha</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_3.png');">
+      <div class="customer-card reveal customer-bg-3">
         <p>Gandhibhavan International Trust, Pathanapuram</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_4.png');">
+      <div class="customer-card reveal customer-bg-4">
         <p>Mar Thoma College, Thiruvalla</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_5.png');">
+      <div class="customer-card reveal customer-bg-5">
         <p>Rev. George Mathen Medical Mission Hospital, Mallappally</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_6.png');">
+      <div class="customer-card reveal customer-bg-6">
         <p>Onattukara Vikasana Agency, Kerala Govt. Dept. of Agriculture</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_7.png');">
+      <div class="customer-card reveal customer-bg-7">
         <p>St. Paul's Mar Thoma Church, Thiruvalla</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_8.png');">
+      <div class="customer-card reveal customer-bg-8">
         <p>St Joseph's English Medium School, Charummoodu</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_9.png');">
+      <div class="customer-card reveal customer-bg-9">
         <p>Christa Mitra Ashram Hospital, Ankola, Karnataka</p>
       </div>
-      <div class="customer-card reveal" style="background-image: url('images/customer_10.png');">
+      <div class="customer-card reveal customer-bg-10">
         <p>Mar Gregorios College of Arts &amp; Science, Punnapra</p>
       </div>
     </div>
@@ -347,10 +353,10 @@
 
       <div class="contact-column">
         <h3>Contact Us</h3>
-        <p>Ph: +91-7559019764 | +91-9497453467<br>
-          +91-9447743467 | +91-8304034392</p>
-        <p>Office: 0477-2963467 | 0477-2283467</p>
-        <p>Email: ascentplusllp@gmail.com</p>
+        <p>Ph: <a href="tel:+917559019764">+91-7559019764</a> | <a href="tel:+919497453467">+91-9497453467</a><br>
+          <a href="tel:+919447743467">+91-9447743467</a> | <a href="tel:+918304034392">+91-8304034392</a></p>
+        <p>Office: <a href="tel:+914772963467">0477-2963467</a> | <a href="tel:+914772283467">0477-2283467</a></p>
+        <p>Email: <a href="mailto:ascentplusllp@gmail.com">ascentplusllp@gmail.com</a></p>
       </div>
 
       <div class="contact-column">
@@ -366,10 +372,10 @@
       </div>
     </div>
 
-    <div class="map-container reveal" aria-hidden="false">
+    <div class="map-container reveal">
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d956.0295967502104!2d76.35244533608852!3d9.406161822667972!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b089bda5cfa792b%3A0xc1f2c618e635bd9d!2sAscent%20Plus!5e0!3m2!1sen!2sin!4v1754981870538!5m2!1sen!2sin"
-        title="Location map of Ascent Plus" width="100%" height="400" style="border:0;" allowfullscreen=""
+        title="Location map of Ascent Plus" width="100%" height="400" allowfullscreen=""
         loading="lazy" referrerpolicy="no-referrer-when-downgrade">
       </iframe>
     </div>
@@ -378,48 +384,11 @@
   <!-- ========================= FOOTER ========================= -->
   <footer class="site-footer">
     <div class="footer-inner">
-      <p>&copy;2025 Ascent Plus Business Solutions LLP. All Rights Reserved.</p>
+      <p>&copy;2026 Ascent Plus Business Solutions LLP. All Rights Reserved.</p>
     </div>
   </footer>
 
-  <!-- ========================= FLOATING PAY BUTTON ========================= -->
-  <!-- <div id="floatingPayBtn" class="floating-pay-btn" role="button" tabindex="0" aria-label="Make a Payment">
-    <span class="pay-label">Test Payment</span>
-  </div> -->
-
-  <!-- Payment Details Form Overlay -->
-  <!-- <div id="paymentFormOverlay" class="payment-form-overlay" style="display:none;" role="dialog" aria-modal="true"
-    aria-labelledby="payFormTitle">
-    <div class="payment-form-backdrop" id="payFormBackdrop"></div>
-    <div class="payment-form-card">
-      <button class="payment-form-close" id="payFormClose" aria-label="Close">&times;</button>
-      <div class="payment-form-header">
-        <span class="payment-form-icon">₹</span>
-        <h3 id="payFormTitle">Test Payment</h3>
-        <p>This is a test payment window to showcase how the payment gateway works. No real money is involved.</p>
-      </div>
-      <form id="paymentDetailsForm" class="payment-details-form" novalidate>
-        <div class="pay-form-group">
-          <label for="payName">Full Name *</label>
-          <input type="text" id="payName" name="payName" placeholder="Your full name" required>
-        </div>
-        <div class="pay-form-group">
-          <label for="payEmail">Email *</label>
-          <input type="email" id="payEmail" name="payEmail" placeholder="your.email@example.com" required>
-        </div>
-        <div class="pay-form-group">
-          <label for="payPhone">Phone *</label>
-          <input type="tel" id="payPhone" name="payPhone" placeholder="+91 XXXXX XXXXX" required>
-        </div>
-        <div class="pay-form-group">
-          <label for="payAmount">Amount (₹) *</label>
-          <input type="number" id="payAmount" name="payAmount" placeholder="Enter amount" min="1" required>
-        </div>
-        <button type="submit" class="pay-proceed-btn" id="payProceedBtn">Proceed to Pay</button>
-      </form>
-    </div>
-  </div> -->
-
+  <script src="protection.js" defer></script>
   <script src="script.js" defer></script>
 
 </body>
